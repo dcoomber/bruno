@@ -20,6 +20,9 @@ import { openCollectionEvent, collectionAddEnvFileEvent } from 'providers/ReduxS
 import { isElectron } from 'utils/common/platform';
 
 const useCollectionTreeSync = () => {
+  if(process.env.NODE_ENV === 'development') {
+    console.log(JSON.stringify({ function: 'useCollectionTreeSync' }));
+  }
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,10 +33,16 @@ const useCollectionTreeSync = () => {
     const { ipcRenderer } = window;
 
     const _openCollection = (pathname, uid, name) => {
+      if(process.env.NODE_ENV === 'development') {
+        console.log(JSON.stringify({ function: '_openCollection', args: {pathname: pathname, uid: uid, name: name} }));
+      }
       dispatch(openCollectionEvent(uid, pathname, name));
     };
 
     const _collectionTreeUpdated = (type, val) => {
+      if(process.env.NODE_ENV === 'development') {
+        console.log(JSON.stringify({ function: '_collectionTreeUpdated', args: {type: type, val: val} }));
+      }
       if(window.__IS_DEV__) {
         console.log(type);
         console.log(val);
@@ -84,10 +93,16 @@ const useCollectionTreeSync = () => {
     };
 
     const _collectionAlreadyOpened = (pathname) => {
+      if(process.env.NODE_ENV === 'development') {
+        console.log(JSON.stringify({ function: '_collectionAlreadyOpened', args: {pathname: pathname} }));
+      }
       toast.success('Collection is already opened');
     };
 
     const _displayError = (error) => {
+      if(process.env.NODE_ENV === 'development') {
+        console.log(JSON.stringify({ function: '_displayError', args: {error: error} }));
+      }
       if(typeof error === "string") {
         return toast.error(error || 'Something went wrong!');
       }
@@ -97,30 +112,51 @@ const useCollectionTreeSync = () => {
     };
 
     const _httpRequestSent = (val) => {
+      if(process.env.NODE_ENV === 'development') {
+        console.log(JSON.stringify({ function: '_httpRequestSent', args: {val: val} }));
+      }
       dispatch(requestSentEvent(val));
     };
 
     const _scriptEnvironmentUpdate = (val) => {
+      if(process.env.NODE_ENV === 'development') {
+        console.log(JSON.stringify({ function: '_scriptEnvironmentUpdate', args: {val: val} }));
+      }
       dispatch(scriptEnvironmentUpdateEvent(val));
     };
 
     const _httpRequestQueued = (val) => {
+      if(process.env.NODE_ENV === 'development') {
+        console.log(JSON.stringify({ function: '_httpRequestQueued', args: {val: val} }));
+      }
       dispatch(requestQueuedEvent(val));
     };
 
     const _testResults = (val) => {
+      if(process.env.NODE_ENV === 'development') {
+        console.log(JSON.stringify({ function: '_testResults', args: {val: val} }));
+      }
       dispatch(testResultsEvent(val));
     };
 
     const _assertionResults = (val) => {
+      if(process.env.NODE_ENV === 'development') {
+        console.log(JSON.stringify({ function: '_assertionResults', args: {val: val} }));
+      }
       dispatch(assertionResultsEvent(val));
     };
 
     const _collectionRenamed = (val) => {
+      if(process.env.NODE_ENV === 'development') {
+        console.log(JSON.stringify({ function: '_collectionRenamed', args: {val: val} }));
+      }
       dispatch(collectionRenamedEvent(val));
     };
 
     const _runFolderEvent = (val) => {
+      if(process.env.NODE_ENV === 'development') {
+        console.log(JSON.stringify({ function: '_runFolderEvent', args: { val: val } }));
+      }
       dispatch(runFolderEvent(val));
     };
 

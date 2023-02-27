@@ -29,7 +29,10 @@
     "build:bruno-query": "npm run build --workspace=packages/bruno-query",
     "build:graphql-docs": "npm run build --workspace=packages/bruno-graphql-docs",
     "build:electron": "./scripts/build-electron.sh",
-    "test:e2e": "npx playwright test",
+    "test:acceptance": "npx playwright test --config=playwright-acceptance.config.js",
+    "test:acceptance:debug": "npx playwright test --config=playwright-acceptance.config.js --debug",
+    "test:e2e": "npx playwright test --config=playwright-e2e.config.js",
+    "test:e2e:debug": "npx playwright test --config=playwright-e2e.config.js --debug --project=chromium",
     "test:report": "npx playwright show-report"
   },
   "overrides": {

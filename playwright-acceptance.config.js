@@ -14,7 +14,7 @@ process.env.PLAYWRIGHT = "1";
  * @type {import('@playwright/test').PlaywrightTestConfig}
  */
 const config = {
-  testDir: './tests',
+  testDir: './tests/specs/acceptance',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
@@ -54,19 +54,19 @@ const config = {
       },
     },
 
-    {
-      name: 'firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-      },
-    },
+    // {
+    //   name: 'firefox',
+    //   use: {
+    //     ...devices['Desktop Firefox'],
+    //   },
+    // },
 
-    {
-      name: 'webkit',
-      use: {
-        ...devices['Desktop Safari'],
-      },
-    },
+    // {
+    //   name: 'webkit',
+    //   use: {
+    //     ...devices['Desktop Safari'],
+    //   },
+    // },
 
     /* Test against mobile viewports. */
     // {
@@ -98,12 +98,13 @@ const config = {
   ],
 
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
-  // outputDir: 'test-results/',
+  outputDir: 'test-results/e2e/',
 
   /* Run your local dev server before starting the tests */
   webServer: {
     command: 'npm run dev:web',
     port: 3000,
+    reuseExistingServer: true,
   },
 };
 
